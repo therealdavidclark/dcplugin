@@ -94,8 +94,8 @@ public class dcplugin extends JavaPlugin {
 					}
 				}
 				
-				getLogger().info("house size: " + hSize);
-				getLogger().info("house height: " + hHeight);
+				//getLogger().info("house size: " + hSize);
+				//getLogger().info("house height: " + hHeight);
 				
 				// Clear space
 				for (int yPoint = y1 - 1; yPoint <= y1 + hHeight + 2; yPoint++) {
@@ -107,7 +107,7 @@ public class dcplugin extends JavaPlugin {
 				}
 
 				// Walls
-				for(int y = y1; y <= y1 + hHeight; y++){
+				for(int y = y1; y <= y1 + hHeight - 1; y++){
 					for(int x = x1 - hSize; x <= x1 + hSize; x++){
 						for(int z = z1 - hSize; z <= z1 + hSize; z++){
 							if(Math.abs(x1-x)==hSize || Math.abs(z1-z)==hSize){
@@ -118,12 +118,32 @@ public class dcplugin extends JavaPlugin {
 				}
 				
 				// Roof
-				for (int xPoint = x1 - hSize; xPoint <= x1 + hSize; xPoint++) {
-					for (int zPoint = z1 - hSize; zPoint <= z1 + hSize; zPoint++) {
-						makeBlock(world, Material.COBBLESTONE, xPoint, y1 + hHeight, zPoint);
+				int offset = hSize;
+				for(int y = y1 + hHeight; y <= y1 + hHeight + hSize; y++){
+					for(int x = x1 - offset; x <= x1 + offset; x++){
+						for(int z = z1 - offset; z <= z1 + offset; z++){
+							if(Math.abs(x1-x)==offset || Math.abs(z1-z)==offset){
+								if(offset<=1){
+									makeBlock(world, Material.GLASS, x, y, z);
+								}else{
+									makeBlock(world, Material.SMOOTH_BRICK, x, y, z);
+								}
+							}
+						}
 					}
+					offset--;
 				}
 
+/*				
+				for (int xPoint = x1 - hSize; xPoint <= x1 + hSize; xPoint++) {
+					for (int zPoint = z1 - hSize; zPoint <= z1 + hSize; zPoint++) {
+						int offset = hHeight + hSize - Math.abs(x1 - xPoint) - Math.abs(z1 - zPoint);
+						getLogger().info("roof offset: " + offset);
+						//makeBlock(world, Material.COBBLESTONE, xPoint, y1 + hHeight, zPoint);
+						makeBlock(world, Material.COBBLESTONE, xPoint, y1 + offset, zPoint);
+					}
+				}
+*/
 				// floor and fence and outer torch
 				for (int xPoint = x1 - hSize - 2; xPoint <= x1 + hSize + 2; xPoint++) {
 					for (int zPoint = z1 - hSize - 2; zPoint <= z1 + hSize + 2; zPoint++) {
@@ -147,12 +167,6 @@ public class dcplugin extends JavaPlugin {
 				makeBlock(world, Material.TORCH, x1 - hSize + 1, y1 + hHeight - 1, z1 + hSize - 1);
 				makeBlock(world, Material.TORCH, x1 - hSize + 1, y1 + hHeight - 1, z1 - hSize + 1);
 				makeBlock(world, Material.TORCH, x1 + hSize - 1, y1 + hHeight - 1, z1 - hSize + 1);
-
-				// outside torches
-				//makeBlock(world, Material.TORCH, x1 + hSize + 1, y1 + hHeight, z1 + hSize);
-				//makeBlock(world, Material.TORCH, x1 - hSize - 1, y1 + hHeight, z1 + hSize);
-				//makeBlock(world, Material.TORCH, x1 - hSize - 1, y1 + hHeight, z1 - hSize);
-				//makeBlock(world, Material.TORCH, x1 + hSize + 1, y1 + hHeight, z1 - hSize);
 
 				// house windows
 				for (int a = -1; a <= 1; a++) {

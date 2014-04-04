@@ -1,0 +1,45 @@
+name: dcplugin
+main: com.gmail.therealdavidclark.dcplugin.dcplugin
+version: 1.0.3
+commands:
+   dc:
+      description: All the dc plugin commands
+      usage: /dc
+      permission: mclocations.dc
+      permission-message: You don't have <permission>
+   dchouse:
+      description: Builds a house around the player.
+      usage: /dchouse
+      permission: mclocations.dchouse
+      permission-message: You don't have <permission>
+   dcgetpos:
+      description: Returns the current player's position. 
+      usage: /dcgetpos
+      permission: mclocations.dcgetpos
+      permission-message: You don't have <permission>
+   dchelp:
+      description: Help with this plugin.
+      usage: /dchelp
+      permission: mclocations.dchelp
+      permission-message: You don't have <permission>    
+   dcsaveloc:       
+      description: Saves the current location under a name.
+      usage: /dcsaveloc <name>
+      permission: mclocations.dcsaveloc
+      permission-message: You don't have <permission>    
+   dclistloc:
+      description: Lists saved locations.
+      usage: /dclistloc
+      permission: mclocations.dclistloc
+      permission-message: You don't have <permission>    
+   dcgoloc:
+      description: Sends the user to specified location.
+      usage: /dcgoloc <name>
+      permission: mclocations.dcgoloc
+      permission-message: You don't have <permission>
+   dcbang:
+      description: Sends lightning to the user's location
+      usage: /dcbang
+      permission: mclocations.dcbang
+      permission-message: You don't have <permission>
+   
